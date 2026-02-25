@@ -1,0 +1,137 @@
+.container {
+  background: black;
+  color: yellow;
+  font-family: Comic Sans MS;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 🔥 FIX: BACKGROUND CLICK ISSUE */
+.girlBg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("https://i.gifer.com/ZZ5H.gif") center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none; /* THIS FIXES CLICKING */
+}
+
+.title {
+  color: red;
+  text-shadow: 2px 0 blue, -2px 0 cyan;
+  animation: glitch 0.3s infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes glitch {
+  50% { transform: translate(2px, -2px); }
+}
+
+.marquee {
+  background: red;
+  color: yellow;
+  padding: 5px;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+}
+
+.videoList {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.window {
+  position: absolute;
+  background: black;
+  border: 3px solid yellow;
+  width: 320px;
+  z-index: 10;
+}
+
+.titleBar {
+  background: red;
+  color: yellow;
+  padding: 5px;
+  cursor: grab;
+}
+
+.fakeDownload {
+  background: yellow;
+  color: red;
+  width: 100%;
+}
+
+.errorText {
+  color: red;
+  padding: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: gray;
+}
+
+/* 😀 REAL SMILEY */
+.face {
+  width: 60px;
+  height: 60px;
+  background: yellow;
+  border-radius: 50%;
+  position: relative;
+}
+
+.eye {
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+}
+
+.eye.left { left: 12px; }
+.eye.right { right: 12px; }
+
+.mouth {
+  width: 30px;
+  height: 15px;
+  border-bottom: 4px solid black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 📀 BOUNCE */
+.dvd {
+  position: absolute;
+  animation: bounce 6s linear infinite;
+  z-index: 1;
+}
+
+@keyframes bounce {
+  0% { top: 0; left: 0; }
+  25% { top: 0; left: 80%; }
+  50% { top: 80%; left: 80%; }
+  75% { top: 80%; left: 0; }
+  100% { top: 0; left: 0; }
+}
+
+/* 🎵 BUTTON FIX */
+.musicToggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: yellow;
+  z-index: 20; /* ABOVE EVERYTHING */
+}

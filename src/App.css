@@ -1,0 +1,124 @@
+body {
+  margin: 0;
+  font-family: Comic Sans MS;
+  color: yellow;
+}
+
+.app {
+  padding: 20px;
+  text-shadow: 2px 2px red;
+}
+
+/* HEADER */
+.glitch {
+  font-size: 40px;
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  100% { transform: translate(1px, -1px); }
+}
+
+.marquee {
+  background: red;
+  color: yellow;
+  padding: 5px;
+}
+
+.marquee2 {
+  background: yellow;
+  color: red;
+  padding: 5px;
+}
+
+/* 🎥 VIDEO AREA */
+.video-area {
+  background: yellow;
+  min-height: 400px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* VIDEO CARDS */
+.video-card {
+  background: black;
+  border: 3px solid red;
+  padding: 10px;
+}
+
+.video-card h3 {
+  color: yellow;
+}
+
+/* ADMIN */
+.admin input,
+.admin-panel input {
+  margin: 5px;
+}
+
+.admin-panel {
+  margin: 10px 0;
+}
+
+/* 🟡 DRAG DROP */
+.drop-zone {
+  margin-top: 10px;
+  padding: 20px;
+  border: 3px dashed red;
+  text-align: center;
+  background: black;
+  color: yellow;
+  cursor: pointer;
+}
+
+.drop-zone.active {
+  background: red;
+  color: yellow;
+}
+
+/* 😀 DVD FACE */
+.dvd {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  z-index: 999;
+}
+
+.face {
+  width: 100px;
+  height: 100px;
+  background: yellow;
+  border-radius: 50%;
+  position: relative;
+}
+
+.eye {
+  width: 14px;
+  height: 14px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 35px;
+}
+
+.eye.left {
+  left: 25px;
+}
+
+.eye.right {
+  right: 25px;
+}
+
+.mouth {
+  width: 40px;
+  height: 20px;
+  border-bottom: 5px solid black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 25px;
+  left: 30px;
+}
