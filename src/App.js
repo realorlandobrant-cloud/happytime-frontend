@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import girl from "./girl.gif";
 
-const API_URL = "https://happytime-backend.onrender.com/";
+const API_URL = "https://happytime-backend.onrender.com";
 const ADMIN_KEY = "dothextremeworm";
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
   const fetchVideos = async () => {
     try {
       setStatus("CONNECTING...");
-      const res = await fetch(API_URL);
+      const res = await fetch(API_URL + "/videos"); // ✅ FIXED
       const data = await res.json();
 
       if (!Array.isArray(data)) {
@@ -46,7 +46,7 @@ export default function App() {
     fetchVideos();
   }, []);
 
-  // 🎬 DVD bounce
+  // 🎬 DVD bounce (UNCHANGED - already correct)
   useEffect(() => {
     const interval = setInterval(() => {
       setX((prevX) => {
@@ -102,11 +102,11 @@ export default function App() {
     }
   };
 
-  // ⬆ upload via URL (unchanged)
+  // ⬆ upload via URL
   const uploadVideo = async () => {
     if (!title || !url) return;
 
-    await fetch(API_URL, {
+    await fetch(API_URL + "/videos", { // ✅ FIXED
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -130,7 +130,7 @@ export default function App() {
     const formData = new FormData();
     formData.append("video", file);
 
-    await fetch(API_URL + "/upload", {
+    await fetch(API_URL + "/videos/upload", { // ✅ FIXED
       method: "POST",
       body: formData,
     });
@@ -160,7 +160,6 @@ export default function App() {
 
       <p>Status: {status}</p>
 
-      {/* 🔐 ADMIN */}
       {!adminMode && (
         <div className="admin">
           <input
@@ -186,7 +185,6 @@ export default function App() {
           />
           <button onClick={uploadVideo}>UPLOAD</button>
 
-          {/* 🟡 DRAG DROP BOX */}
           <div
             className={`drop-zone ${dragActive ? "active" : ""}`}
             onDragOver={(e) => {
@@ -201,7 +199,6 @@ export default function App() {
         </div>
       )}
 
-      {/* 🎥 VIDEO AREA */}
       <div className="video-area">
         {videos.map((vid, i) => (
           <div key={i} className="video-card">
@@ -223,7 +220,6 @@ export default function App() {
         ))}
       </div>
 
-      {/* 😀 DVD FACE */}
       <div className="dvd" style={{ left: x, top: y }}>
         <div className="face">
           <div className="eye left"></div>
