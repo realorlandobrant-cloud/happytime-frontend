@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import girl from "./girl.gif";
 
-const API_URL = "http://localhost:5000/videos";
+const API_URL = "https://happytime-backend.onrender.com/";
 const ADMIN_KEY = "dothextremeworm";
 
 export default function App() {
