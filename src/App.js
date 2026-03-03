@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import girl from "./girl.gif";
 
-// ✅ FIXED API URL
-const API_URL = "https://happytime-backend.onrender.com/videos";
-
+const API_URL = "https://happytime-backend.onrender.com";
 const ADMIN_KEY = "dothextremeworm";
 
 export default function App() {
@@ -25,11 +23,12 @@ export default function App() {
 
   const [dragActive, setDragActive] = useState(false);
 
-  // ✅ FETCH VIDEOS
+  // ✅ FIXED FETCH (IMPORTANT)
   const fetchVideos = async () => {
     try {
       setStatus("CONNECTING...");
-      const res = await fetch(API_URL);
+
+      const res = await fetch(API_URL + "/videos");
       const data = await res.json();
 
       if (!Array.isArray(data)) {
@@ -94,14 +93,10 @@ export default function App() {
     const audio = document.getElementById("bg-music");
     if (!audio) return;
 
-    if (musicOn) {
-      audio.play().catch(() => {});
-    } else {
-      audio.pause();
-    }
+    musicOn ? audio.play().catch(() => {}) : audio.pause();
   }, [musicOn]);
 
-  // 🔐 unlock admin
+  // 🔐 admin
   const unlockAdmin = () => {
     if (keyInput === ADMIN_KEY) {
       setAdminMode(true);
@@ -110,11 +105,11 @@ export default function App() {
     }
   };
 
-  // ⬆ upload via URL
+  // ✅ upload via URL (FIXED ENDPOINT)
   const uploadVideo = async () => {
     if (!title || !url) return;
 
-    await fetch(API_URL, {
+    await fetch(API_URL + "/videos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -127,7 +122,7 @@ export default function App() {
     fetchVideos();
   };
 
-  // 🟡 DRAG + DROP UPLOAD
+  // ✅ DRAG + DROP (FIXED ENDPOINT)
   const handleDrop = async (e) => {
     e.preventDefault();
     setDragActive(false);
@@ -138,7 +133,7 @@ export default function App() {
     const formData = new FormData();
     formData.append("video", file);
 
-    await fetch(API_URL + "/upload", {
+    await fetch(API_URL + "/videos/upload", {
       method: "POST",
       body: formData,
     });
@@ -168,7 +163,6 @@ export default function App() {
 
       <p>Status: {status}</p>
 
-      {/* 🔐 ADMIN */}
       {!adminMode && (
         <div className="admin">
           <input
@@ -208,7 +202,6 @@ export default function App() {
         </div>
       )}
 
-      {/* 🎥 VIDEO AREA */}
       <div className="video-area">
         {videos.map((vid, i) => (
           <div key={i} className="video-card">
@@ -222,15 +215,12 @@ export default function App() {
                 title="video"
               />
             ) : (
-              <video width="300" controls>
-                <source src={vid.url} />
-              </video>
+              <video width="300" controls src={vid.url} />
             )}
           </div>
         ))}
       </div>
 
-      {/* 😀 DVD FACE */}
       <div className="dvd" style={{ left: x, top: y }}>
         <div className="face">
           <div className="eye left"></div>
